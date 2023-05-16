@@ -16,3 +16,347 @@ São ilegais:
 p = i;
 i = (*&)j;
 q = *p;
+
+Questão 04:
+Não foram obtidas as respostas pretendidas, devido ao tipo de variável utilizada.
+Será impresso os seguintes caracteres:
+20 
+29.0 
+P 
+e 
+P 
+e 
+t 
+31 
+45 
+27 
+31 
+45 
+27 
+
+Questão 05:
+Exibidos os endereços de memória abaixo. Os valores de |X| foram incrementados em 4 posições.
+contador/valor/valor/endereco/endereco
+i = 0vet[0] = 1.1*(f + 0) = 1.1&vet[0] = 266C7ED0(f + 0) = 266C7ED0
+i = 1vet[1] = 2.2*(f + 1) = 2.2&vet[1] = 266C7ED4(f + 1) = 266C7ED4
+i = 2vet[2] = 3.3*(f + 2) = 3.3&vet[2] = 266C7ED8(f + 2) = 266C7ED8
+i = 3vet[3] = 4.4*(f + 3) = 4.4&vet[3] = 266C7EDC(f + 3) = 266C7EDC
+i = 4vet[4] = 5.5*(f + 4) = 5.5&vet[4] = 266C7EE0(f + 4) = 266C7EE0
+
+Questão 06:
+Resultado:
+*(pulo + 2);
+
+Questão 07:
+Apenas "p = mat + 1" e "x = (*mat)++" são válidos pois "mat" é um array e nao incrementa.
+
+Questão 08:
+O primeiro preenche os valores do vetor e exibe os seguintes valores:  "4, 9 e 13".
+O segundo exibe os endereços de memória na qual os valores "4, 9 e 13" foram alocados.
+
+Questão 09:
+Para x declarado como char: 
+x+1 = 4093 
+x+2 = 4094 
+x+3 = 4095
+
+Para x declarado como int?
+x+1 = 4094 
+x+2 = 4096 
+x+3 = 4098
+
+Para x declarado como float?
+x+1 = 4096 
+x+2 = 4100 
+x+3 = 4104
+
+Para x declarado como double?
+x+1 = 4100 
+x+2 = 4108 
+x+3 = 4116
+
+Questão 10:
+Para obter novas saídas, alteramos o tipo de variável (float x[4]):
+
+#include <iostream>
+int main(){
+float x[4];
+int i;
+for(i=0; i<4; i++)
+printf("%X ",x+i);
+}
+
+Questão 11:
+Respostas: 
+aloha[2] = value;  VÁLIDO
+scanf("%f", &aloha); VÁLIDO
+aloha = value; INVÁLIDO
+printf("%f", aloha); VÁLIDO
+coisas[4][4] = aloha[3]; VÁLIDO
+coisas[5] = aloha; INVÁLIDO
+pf = value; INVÁLIDO
+pf = aloha; VÁLIDO
+
+Questão 12:
+Ponteiro para uma função é a forma que a função tem de apontar para para uma variável, ou seja, obter o valor daquele determinado ponteiro que esta alocado na memória.
+Ex:
+int main(){
+  int vet[] = {4,9,13};
+  int i;
+  for(i=0;i<3;i++){
+  printf("%d ",*(vet+i));
+  }
+}
+
+Questão 13:
+#include <stdio.h>
+#include <stdlib.h>
+
+void ordenarValores(float *x, int n) {
+
+    int i, j;
+    float temp;
+   for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (x[j] > x[j + 1]) {
+                temp = x[j];
+                x[j] = x[j + 1];
+                x[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, i;
+    float *x;
+
+    printf("entre com a quantidade de valores: ");
+    scanf("%d", &n);
+    
+    x = (float *) malloc(n * sizeof(float));
+
+    printf("digite os valores:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%f", &x[i]);
+    }
+    ordenarValores(x, n);
+    printf("Seq. em ordem crescente:\n");
+    for (i = 0; i < n; i++) {
+        printf("%.2f ", x[i]);
+    }
+    printf("\n");
+    free(x);
+
+    return 0;
+}
+
+    
+Questão 14:
+#include <stdio.h>
+#include <stdlib.h>
+
+//criando a função de comparação para o qsort
+int comparar(const void *a, const void *b) {
+    float valor1 = *((float *)a); //atribuindo e convertendo ponteiro a
+    float valor2 = *((float *)b); //atribuindo e convertendo ponteiro b
+
+    if (valor1 < valor2)
+        return -1; //aqui compara e retorna negativo se a<b
+    else if (valor1 > valor2)
+        return 1; //aqui compara e retorna positivo se a>b
+    else
+        return 0; //aqui compara e retorna 0 se a=b
+}
+
+int main() {
+    int n, i;
+    float *x;
+
+    printf("entre com a quantidade de valores: "); //aqui imprime a msgm na tela
+    scanf("%d", &n); //aqui le o valor inserido pelo usuário
+
+    x = (float *) malloc(n * sizeof(float));  // aqui aloca dinâmicamente a memória usando malloc
+
+    printf("Digite os valores:\n"); //aqui imprime a msgm na tela
+    for (i = 0; i < n; i++) {
+        scanf("%f", &x[i]); //aqui le os valores inseridos pelo usuário
+    }
+
+    qsort(x, n, sizeof(float), comparar);  // aqui ordena utilizando a função qsort()
+
+    printf("Valores em ordem crescente:\n"); //aqui imprime a msgm na tela
+    for (i = 0; i < n; i++) {
+        printf("%.2f ", x[i]);
+    }
+    printf("\n");
+
+    free(x);  //libera memória alocada
+
+    return 0;
+}
+
+
+Questão 15:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//comparando com ordenação crescente
+int comparecresce(const void *a, const void *b) {
+    int valor1 = *((int *)a);
+    int valor2 = *((int *)b);
+
+    if (valor1 < valor2)
+        return -1;
+    else if (valor1 > valor2)
+        return 1;
+    else
+        return 0;
+}
+
+////comparando com ordenação decrescente
+int comparedecresce(const void *a, const void *b) {
+    int valor1 = *((int *)a);
+    int valor2 = *((int *)b);
+
+    if (valor1 > valor2)
+        return -1;
+    else if (valor1 < valor2)
+        return 1;
+    else
+        return 0;
+}
+
+//ordenando personalizadamente
+void ordemint(int *valor, int tamanho, int (*comparar)(const void *, const void *)) {
+    qsort(valor, tamanho, sizeof(int), comparar);
+}
+
+int main() {
+    int valor[] = {9, 5, 2, 7, 1};
+    int tamanho = sizeof(valor) / sizeof(valor[0]);
+    int i;
+
+    printf("Valor original:\n");
+    for (i = 0; i < tamanho; i++) {
+        printf("%d ", valor[i]);
+    }
+    printf("\n");
+
+    //ordenação crescente
+    ordemint(valor, tamanho, comparecresce);
+
+    printf("Valores em ordem crescente:\n");
+    for (i = 0; i < tamanho; i++) {
+        printf("%d ", valor[i]);
+    }
+    printf("\n");
+
+
+    return 0;
+}
+
+Questão 16:
+Podemos concluir que os tempos são diferentes, seja para plataformas unix ou plataformas windows. Esses tempos dependem do hardware utilizado, e de qual função será utilizada para obter o tempo do sistema.
+
+Questão 17:
+#include <stdio.h>
+
+void soma_vetores(int* vetor1, int* vetor2, int* resultado, int tam) {
+    for (int i = 0; i < tam; i++) {
+        resultado[i] = vetor1[i] + vetor2[i];
+    }
+}
+
+int main() {
+    int tam;
+
+    printf("entre com o tamanho dos vetores: ");
+    scanf("%d", &tam);
+
+    int vetor1[tam];
+    int vetor2[tam];
+    int resultado[tam];
+
+    printf("entre com os elementos do primeiro vetor:\n");
+    for (int i = 0; i < tam; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor1[i]);
+    }
+
+    printf("entre com os elementos do segundo vetor:\n");
+    for (int i = 0; i < tam; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor2[i]);
+    }
+
+    soma_vetores(vetor1, vetor2, resultado, tam);
+
+    printf("resultado da soma dos vetores:\n");
+    for (int i = 0; i < tam; i++) {
+        printf("%d ", resultado[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+Questão 18:
+#include <stdio.h>
+
+
+void multiplica_matrizes(int *A, int *B, int *C, int linhasA, int colunasA, int colunasB) {
+    int i, j, k;
+    
+    for (i = 0; i < linhasA; i++) {
+        for (j = 0; j < colunasB; j++) {
+            C[i * colunasB + j] = 0;
+            for (k = 0; k < colunasA; k++) {
+                C[i * colunasB + j] += A[i * colunasA + k] * B[k * colunasB + j];
+            }
+        }
+    }
+}
+
+int main() {
+    int A[2][3] = {{1, 2, 3},
+                   {4, 5, 6}};
+    int B[3][4] = {{7, 8, 9, 10},
+                   {11, 12, 13, 14},
+                   {15, 16, 17, 18}};
+    int C[2][4];
+    int linhasA = 2;
+    int colunasA = 3;
+    int colunasB = 4;
+    int i, j;
+    
+    multiplica_matrizes((int *)A, (int *)B, (int *)C, linhasA, colunasA, colunasB);
+    
+    printf("matriz A:\n");
+    for (i = 0; i < linhasA; i++) {
+        for (j = 0; j < colunasA; j++) {
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+    
+    printf("\nmatriz B:\n");
+    for (i = 0; i < colunasA; i++) {
+        for (j = 0; j < colunasB; j++) {
+            printf("%d ", B[i][j]);
+        }
+        printf("\n");
+    }
+    
+    printf("\nMatriz C (resultado multiplicação AxB):\n");
+    for (i = 0; i < linhasA; i++) {
+        for (j = 0; j < colunasB; j++) {
+            printf("%d ", C[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
